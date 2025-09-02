@@ -32,10 +32,10 @@ int main(int argc, char* argv[]) {
 
     /*
         Tones and Tensions
-            0 - Unavailable Tension
-            1 - Weak chord tones (1st and 5th)
-            2 - Guide tones (3rd and 7th)
-            3 - Available tensions (9th, 11th, 13th, etc.)
+            0 - Unacceptable Harmony = Unavailable Tensions/Avoid Notes
+            1 - Weak Harmony = Root and 5th
+            2 - Strong Harmony = Guide Tones
+            3 - Jazzy Harmony = Available Tensions
     */
 
     // Non-Dominant chords: Maj7, m7, m7b5, mMaj7, Maj+7, diminished
@@ -50,6 +50,12 @@ int main(int argc, char* argv[]) {
     const int dominant7[12] = {1, 3, 3, 3, 2, 0, 3, 1, 3, 3, 2, 0};
     const int suspended7[12] = {1, 3, 3, 3, 3, 2, 0, 1, 3, 3, 2, 0};
     const int augmented7[12] = {1, 3, 3, 3, 2, 0, 3, 0, 1, 3, 2, 0};
+
+    // TODO Test color codes
+    cout << "\033[30mUnacceptable Harmony\033[0m" << endl;
+    cout << "\033[32mWeak Harmony\033[0m" << endl;
+    cout << "\033[34mStrong Harmony\033[0m" << endl;
+    cout << "\033[35mJazzy Harmony\033[0m" << endl;
     
     return 0;
 }
