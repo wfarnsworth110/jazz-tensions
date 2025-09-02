@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 #include <string>
 
 using namespace std;
@@ -21,32 +20,36 @@ int main(int argc, char* argv[]) {
         noteInput = 0;
     
     // Set up array of strings
-    string notes[12] = {
+    const string notes[12] = {
         "C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"
     };// 0    1     2    3     4    5    6     7    8     9    10    11
 
+    // Test: Display notes
     for(int i = 0; i < 12; ++i) {
-        cout << notes[(i+noteInput)%12] << "\t";
+        cout << notes[(i + noteInput) % 12] << "\t";
     }
     cout << endl;
 
-    vector<string> notes2 = {"C"};  // 0
-    notes2.push_back("Db");          // 1
-    notes2.push_back("D");           // 2
-    notes2.push_back("Eb");          // 3
-    notes2.push_back("E");           // 4
-    notes2.push_back("F");           // 5
-    notes2.push_back("Gb");          // 6
-    notes2.push_back("G");           // 7
-    notes2.push_back("Ab");          // 8
-    notes2.push_back("A");           // 9
-    notes2.push_back("Bb");          // 10
-    notes2.push_back("B");           // 11
+    /*
+        Tones and Tensions
+            0 - Unavailable Tension
+            1 - Weak chord tones (1st and 5th)
+            2 - Guide tones (3rd and 7th)
+            3 - Available tensions (9th, 11th, 13th, etc.)
+    */
 
-    for(const string& note : notes2) {
-        cout << note << "\t";
-    }
-    cout << endl;
+    // Non-Dominant chords: Maj7, m7, m7b5, mMaj7, Maj+7, diminished
+    const int major7[12] = {1, 0, 3, 0, 2, 0, 3, 1, 0, 3, 0, 2};
+    const int minor7[12] = {1, 0, 3, 2, 0, 3, 0, 1, 0, 3, 2, 0};
+    const int halfDiminished7[12] = {1, 0, 3, 2, 0, 3, 1, 0, 3, 0, 2, 0};
+    const int minorMajor7[12] = {1, 0, 3, 2, 0, 3, 0, 1, 0, 3, 0, 2};
+    const int augmentedMajor7[12] = {1, 0, 3, 0, 2, 0, 3, 0, 1, 0, 0, 2};
+    const int diminished7[12] = {1, 0, 3, 2, 0, 3, 1, 0, 3, 2, 0, 3};
 
+    // Dominant chords: 7, 7sus, +7
+    const int dominant7[12] = {1, 3, 3, 3, 2, 0, 3, 1, 3, 3, 2, 0};
+    const int suspended7[12] = {1, 3, 3, 3, 3, 2, 0, 1, 3, 3, 2, 0};
+    const int augmented7[12] = {1, 3, 3, 3, 2, 0, 3, 0, 1, 3, 2, 0};
+    
     return 0;
 }
