@@ -97,11 +97,35 @@ int main(int argc, char* argv[]) {
     vector<Chord> chords;
     chords.push_back(addChord("Major 7", ptr));
 
-    // Test
+    // Test for the actual tension highlighting before adding file operations
+    // TODO Redo the colors
     for(const Chord& chord : chords) {
         cout << chord.name << endl;
         for(int i = 0; i < no_notes; ++i) {
-            cout << chord.tensions[i] << " ";
+            cout << chord.tensions[i] << "\t";
+        }
+        cout << endl;
+        for(int i = 0; i < no_notes; ++i) {
+            string output = notes[(i + noteInput) % 12];
+            switch (chord.tensions[i])
+            {
+            case 2:
+                // Strong harmony
+                cout << "\033[34m" << output << "\033[0m\t";
+                break;
+            case 1:
+                // Weak harmony
+                cout << "\033[32m" << output << "\033[0m\t";
+                break;
+            case 3:
+                // Jazzy harmony
+                cout << "\033[35m" << output << "\033[0m\t";
+                break;
+            default:
+                // Unacceptable harmony
+                cout << "\033[30m" << output << "\033[0m\t";
+                break;
+            }
         }
         cout << endl;
     }

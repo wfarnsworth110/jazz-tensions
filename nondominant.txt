@@ -1,0 +1,12 @@
+Major 7
+1 0 3 0 2 0 3 1 0 3 0 2
+Minor 7
+1 0 3 2 0 3 0 1 0 3 2 0
+Half Diminished 7
+1 0 3 2 0 3 1 0 3 0 2 0
+Minor Major 7
+1 0 3 2 0 3 0 1 0 3 0 2
+Augmented Major 7
+1 0 3 0 2 0 3 0 1 0 0 2
+Diminished 7
+1 0 3 2 0 3 1 0 3 2 0 3
