@@ -1,2 +1,5 @@
 # jazz-tensions
-Jazz harmony information that will genuinely save me time. Input a chord tone and type. Output the 9th, 11th, and 13th degrees of said chord, with scales that can accommodate those degrees, with an option of showing which scales can also accommodate the 3rd and 7th degrees.
+Two objectives.
+
+1) For a given note, output jazz chords with information on available tensions and guide tones.
+2) For a given note, output all the chords it can be played over with indications on what kind of note/tension it is.
