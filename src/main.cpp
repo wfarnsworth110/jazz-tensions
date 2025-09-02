@@ -1,7 +1,20 @@
 #include <iostream>
+#include <cstdlib>
+#include <vector>
 #include <string>
+#include <array>
 
 using namespace std;
+
+struct Chord {
+    string name;
+    int* tensions;
+};
+
+Chord addChord(string name, int* tensions) {
+    Chord newChord = {name, tensions};
+    return newChord;
+}
 
 int main(int argc, char* argv[]) {
     /*
@@ -38,24 +51,63 @@ int main(int argc, char* argv[]) {
             3 - Jazzy Harmony = Available Tensions
     */
 
-    // Non-Dominant chords: Maj7, m7, m7b5, mMaj7, Maj+7, diminished
-    const int major7[12] = {1, 0, 3, 0, 2, 0, 3, 1, 0, 3, 0, 2};
-    const int minor7[12] = {1, 0, 3, 2, 0, 3, 0, 1, 0, 3, 2, 0};
-    const int halfDiminished7[12] = {1, 0, 3, 2, 0, 3, 1, 0, 3, 0, 2, 0};
-    const int minorMajor7[12] = {1, 0, 3, 2, 0, 3, 0, 1, 0, 3, 0, 2};
-    const int augmentedMajor7[12] = {1, 0, 3, 0, 2, 0, 3, 0, 1, 0, 0, 2};
-    const int diminished7[12] = {1, 0, 3, 2, 0, 3, 1, 0, 3, 2, 0, 3};
-
-    // Dominant chords: 7, 7sus, +7
-    const int dominant7[12] = {1, 3, 3, 3, 2, 0, 3, 1, 3, 3, 2, 0};
-    const int suspended7[12] = {1, 3, 3, 3, 3, 2, 0, 1, 3, 3, 2, 0};
-    const int augmented7[12] = {1, 3, 3, 3, 2, 0, 3, 0, 1, 3, 2, 0};
+    // Have an awesome double array to keep track of these ugly numbers
+    const string chordNames[9] = {
+        "Major 7", "Minor 7", "Half Diminished 7",
+        "Minor Major 7", "Augmented Major 7", "Diminished 7",
+        "Dominant 7", "Suspended 7", "Augmented 7"
+    };
+    const int availableTensions[9][12] = {
+        // Non-Dominant Chords
+        {1, 0, 3, 0, 2, 0, 3, 1, 0, 3, 0, 2}, // Major 7
+        {1, 0, 3, 2, 0, 3, 0, 1, 0, 3, 2, 0}, // Minor 7
+        {1, 0, 3, 2, 0, 3, 1, 0, 3, 0, 2, 0}, // Half Diminished 7
+        {1, 0, 3, 2, 0, 3, 0, 1, 0, 3, 0, 2}, // Minor Major 7
+        {1, 0, 3, 0, 2, 0, 3, 0, 1, 0, 0, 2}, // Augmented Major 7
+        {1, 0, 3, 2, 0, 3, 1, 0, 3, 2, 0, 3}, // Diminished 7
+        // Dominant Chords
+        {1, 3, 3, 3, 2, 0, 3, 1, 3, 3, 2, 0}, // Dominant 7
+        {1, 3, 3, 3, 3, 2, 0, 1, 3, 3, 2, 0}, // Suspended 7
+        {1, 3, 3, 3, 2, 0, 3, 0, 1, 3, 2, 0}  // Augmented 7
+    };
 
     // TODO Test color codes
     cout << "\033[30mUnacceptable Harmony\033[0m" << endl;
     cout << "\033[32mWeak Harmony\033[0m" << endl;
     cout << "\033[34mStrong Harmony\033[0m" << endl;
     cout << "\033[35mJazzy Harmony\033[0m" << endl;
+
+    // TODO Test int* shenanigans
+    int no_notes = 12;
+    int* ptr;
+    ptr = (int*)malloc(sizeof(int) * no_notes);
+    ptr[0] = 1;
+    ptr[1] = 0;
+    ptr[2] = 3;
+    ptr[3] = 0;
+    ptr[4] = 2;
+    ptr[5] = 0;
+    ptr[6] = 3;
+    ptr[7] = 1;
+    ptr[8] = 0;
+    ptr[9] = 3;
+    ptr[10] = 0;
+    ptr[11] = 2;
+
+    vector<Chord> chords;
+    chords.push_back(addChord("Major 7", ptr));
+
+    // Test
+    for(const Chord& chord : chords) {
+        cout << chord.name << endl;
+        for(int i = 0; i < no_notes; ++i) {
+            cout << chord.tensions[i] << " ";
+        }
+        cout << endl;
+    }
+
+    chords.clear();
+    free(ptr);
     
     return 0;
 }
