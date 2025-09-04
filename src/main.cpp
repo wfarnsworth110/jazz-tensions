@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include <array>
+#include <fstream>
 
 using namespace std;
 
@@ -78,6 +79,7 @@ int main(int argc, char* argv[]) {
     cout << "\033[35mJazzy Harmony\033[0m" << endl;
 
     // TODO Test int* shenanigans
+    /*
     int no_notes = 12;
     int* ptr;
     ptr = (int*)malloc(sizeof(int) * no_notes);
@@ -129,9 +131,38 @@ int main(int argc, char* argv[]) {
         }
         cout << endl;
     }
+    */
 
-    chords.clear();
-    free(ptr);
-    
+    // TODO Test file reading (setup and error handling)
+    ifstream nondominant("../nondominant.txt");
+    ifstream dominant("../dominant.txt");
+    if(!nondominant.is_open() || !dominant.is_open()) {
+        cerr << "Error opening one or more files." << endl;
+        return 1;
+    }
+
+    // Reading
+    string chordName;
+    string chordInfo;
+    cout << "Non-Dominant Chords" << endl;
+    while(getline(nondominant, chordName) && getline(nondominant, chordInfo)) {
+        cout << "Line 1: " << chordName << endl;
+        cout << "Line 2: " << chordInfo << endl;
+        cout << "====" << endl;
+    }
+    cout << "Dominant Chords" << endl;
+    while(getline(dominant, chordName) && getline(dominant, chordInfo)) {
+        cout << "Line 1: " << chordName << endl;
+        cout << "Line 2: " << chordInfo << endl;
+        cout << "====" << endl;
+    }
+
+    // There shouldn't be an odd number of lines, but maybe check for it...?
+
+    // Clean up
+    nondominant.close();
+    dominant.close();
+    //chords.clear();
+    //free(ptr);
     return 0;
 }
