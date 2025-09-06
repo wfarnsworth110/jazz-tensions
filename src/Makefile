@@ -6,7 +6,7 @@ SOURCE = main.cpp
 all: $(TARGET)
 
 $(TARGET): $(SOURCE)
-	$(CXX) $(CXXFLAGS) $(SOURCE) -o $(TARGET)
+	$(CXX) -g $(CXXFLAGS) $(SOURCE) -o $(TARGET)
 
 clean:
 	rm -f $(TARGET)
